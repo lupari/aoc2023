@@ -13,7 +13,7 @@ object Day01:
     def helper(xs: List[Char], acc: String): String = xs match
       case h :: t =>
         val trial = acc :+ h
-        numbers.find(trial.contains(_._1)) match
+        numbers.find(n => trial.contains(n._1)) match
           case Some((n, i)) => helper(t, trial.replace(n, (i + 1).toString) :+ h)
           case _            => helper(t, trial)
       case Nil => acc
