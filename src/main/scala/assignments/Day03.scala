@@ -43,7 +43,7 @@ object Day03:
     .flatMap(getNumbers)
 
   def partOne(): Int =
-    numbers.filter(d => !isGood(d)).map(_.map(grid(_)).mkString.toInt).sum
+    numbers.filterNot(isGood(_)).map(_.map(grid(_)).mkString.toInt).sum
 
   def partTwo(): Int = grid.keys
     .filter(grid(_) == '*')
