@@ -46,8 +46,8 @@ object Day03:
     numbers.filter(d => !isGood(d)).map(g => g.map(x => grid(x)).mkString.toInt).sum
 
   def partTwo(): Int = grid.keys
-    .filter(p => grid(p) == '*')
-    .filter(p => p.surroundings.count(grid(_).isDigit) >= 2)
+    .filter(grid(_) == '*')
+    .filter(_.surroundings.count(grid(_).isDigit) >= 2)
     .map(g =>
       numbers
         .filter(xs => xs.flatMap(_.surroundings).contains(g))
