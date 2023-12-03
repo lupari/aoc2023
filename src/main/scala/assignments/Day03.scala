@@ -38,7 +38,7 @@ object Day03:
     .groupBy((k, _) => k.y)
     .values
     .map(r => r.toList.sortBy(x => x._1.x))
-    .keys
+    .map(x => x.map(_._1))
     .toList
     .flatMap(getNumbers)
 
