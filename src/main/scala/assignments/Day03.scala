@@ -37,7 +37,7 @@ object Day03:
   val numbers: List[List[Point]] = grid
     .groupBy((k, _) => k.y)
     .values
-    .map(_. toList.sortBy(_._1.x))
+    .map(_.toList.sortBy(_._1.x))
     .map(x => x.map(_._1))
     .toList
     .flatMap(getNumbers)
