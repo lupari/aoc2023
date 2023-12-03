@@ -8,7 +8,7 @@ import lib.Points.Point
 object Day03:
 
   def isGood(xs: List[Point]) =
-    xs.forall(c => c.surroundings.forall(s => grid(s).isDigit || grid(s) == '.'))
+    xs.forall(_.surroundings.forall(s => grid(s).isDigit || grid(s) == '.'))
 
   def getNumbers(row: List[Point]): List[List[Point]] =
     @tailrec
@@ -38,7 +38,7 @@ object Day03:
     .groupBy((k, _) => k.y)
     .values
     .map(r => r.toList.sortBy(x => x._1.x))
-    .map(x => x.map(_._1))
+    .keys
     .toList
     .flatMap(getNumbers)
 
