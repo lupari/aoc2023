@@ -19,17 +19,17 @@ object Day03:
     ): List[List[Point]] =
       xs match
         case h :: i :: t if grid(h).isDigit && !grid(i).isDigit && !curr.isDefined =>
-           acc :+ List(h)
-        case h :: i :: Nil if grid(i).isDigit && curr.isDefined =>
-          helper(Nil, None, acc :+ (curr.get :+ h :+ i))
+          helper(t, None, acc :+ List(h)) // single digit
+        case h :: i :: Nil if grid(i).isDigit && curr.isDefined => // eol case
+          acc :+ (curr.get :+ h :+ i)
         case h :: i :: t if grid(h).isDigit && !grid(i).isDigit => // end of number
           helper(t, None, acc :+ (curr.get :+ h))
         case h :: t if grid(h).isDigit && curr.isDefined => // continuation of number
           helper(t, Option(curr.get :+ h), acc)
-        case h :: t if grid(h).isDigit =>
-          helper(t, Option(List(h)), acc) // new number
-        case Nil    => acc
+        case h :: t if grid(h).isDigit => // new number
+          helper(t, Option(List(h)), acc)
         case _ :: t => helper(t, None, acc)
+        case _      => acc
     helper(row, None, Nil)
 
   val grid: Grid[Char] =
