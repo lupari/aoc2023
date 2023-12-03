@@ -37,7 +37,7 @@ object Day03:
   val numbers: List[List[Point]] = grid
     .groupBy((k, _) => k.y)
     .values
-    .map(r => r.toList.sortBy(x => x._1.x))
+    .map(_. toList.sortBy(_._1.x))
     .map(x => x.map(_._1))
     .toList
     .flatMap(getNumbers)
@@ -50,8 +50,8 @@ object Day03:
     .filter(_.surroundings.count(grid(_).isDigit) >= 2)
     .map(g =>
       numbers
-        .filter(xs => xs.flatMap(_.surroundings).contains(g))
-        .map(xs => xs.map(grid(_)).mkString.toInt)
+        .filter(_.flatMap(_.surroundings).contains(g))
+        .map(_..map(grid(_)).mkString.toInt)
     )
     .filter(_.length == 2)
     .map(p => p.head * p.last)
