@@ -4,6 +4,7 @@ import lib.Points.Point
 
 import scala.annotation.tailrec
 import scala.reflect.ClassTag
+import scala.util.matching.Regex
 
 object GridExtensions:
 
@@ -20,6 +21,15 @@ object GridExtensions:
       val canvas = grid.canvas(default)(cf)
       canvas.foreach { row =>
         row.mkString foreach print; println
+      }
+
+    def findAll(length: Int, regex: Regex): Set[Point] =
+      grid.keySet.flatMap { p =>
+        val sequence = (p.x until (p.x + length)).map(r => grid.get(Point(p.x, r)))
+        if sequence.forall(_.isDefined) then
+          val seq = sequence.flatten.mkString
+          Option.when(regex.matches(seq))(p)
+        else None
       }
 
   private def makeGrid[A](input: Seq[Char])(fn: (Char => A)): Grid[A] =
