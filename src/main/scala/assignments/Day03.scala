@@ -19,7 +19,7 @@ object Day03:
     ): List[List[Point]] =
       xs match
         case h :: i :: t if grid(h).isDigit && !grid(i).isDigit && !curr.isDefined =>
-          helper(t, None, acc :+ List(h))
+           acc :+ List(h)
         case h :: i :: Nil if grid(i).isDigit && curr.isDefined =>
           helper(Nil, None, acc :+ (curr.get :+ h :+ i))
         case h :: i :: t if grid(h).isDigit && !grid(i).isDigit => // end of number
