@@ -51,7 +51,7 @@ object Day03:
     .map(g =>
       numbers
         .filter(_.flatMap(_.surroundings).contains(g))
-        .map(_..map(grid(_)).mkString.toInt)
+        .map(_.map(grid(_)).mkString.toInt)
     )
     .filter(_.length == 2)
     .map(p => p.head * p.last)
