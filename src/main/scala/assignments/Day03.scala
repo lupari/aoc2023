@@ -35,7 +35,7 @@ object Day03:
   val grid: Grid[Char] =
     Source.fromResource("day03.txt").mkString.toList.toGrid.withDefaultValue('.')
   val numbers: List[List[Point]] = grid
-    .groupBy((k, _) => k.y)
+    .groupBy(_._1.y)
     .values
     .map(_.toList.sortBy(_._1.x))
     .map(_.map(_._1))
