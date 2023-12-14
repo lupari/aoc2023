@@ -24,4 +24,4 @@ object Day05:
   val input: List[String] = Source.fromResource("day05.txt").getLines.toList
 
   def partOne(): Int = countOverlaps(vents.filterNot(_.isDiagonal))
-  def partTwo(): Int = countOverlaps(vents)
+  
